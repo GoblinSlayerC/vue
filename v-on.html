@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+    <style>
+        #div1{
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+        #div2{
+            width: 100px;
+            height: 100px;
+            background: greenyellow;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button @click="add(2)">add</button>
+        <input type="text" @keyup.enter="sum($event)" v-model="num">
+        <h1>{{ count }}</h1>
+
+        <!-- <div id="div1" @click="click1">
+            <div id="div2" @click.stop="click2"></div></div>
+        </div> -->
+
+        <a  href="http://www.baidu.com" @click.prevent="bind($event)">baidu</a>
+    </div>
+</body>
+<script src="./vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data:{
+            msg: 'hello world',
+            count: 0,
+            num:0
+        },
+        methods: {
+            add(n){
+                this.count+=n;
+            },
+            sum(e){
+                console.log(e.keyCode)
+                if (e.keyCode==13) {
+                    this.count += parseInt(this.num)
+                }
+            },
+            click1(){
+                console.log(1)
+            },
+            click2(){
+                console.log(2)
+            },
+            bind(e){
+                console.log(111)
+                // e.preventDefault();
+            }
+        },
+    })
+</script>
+</html>
