@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+    <style>
+        #div1{
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+        #div2{
+            width: 100px;
+            height: 100px;
+            background: greenyellow;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <form action="">
+            用户名: <input type="text" v-model="name">
+            <p>名字是:{{name}}</p>
+        </form>
+    </div>
+</body>
+<script src="./vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data:{
+            name: '',
+
+        },
+        methods: {
+            
+        },
+    })
+</script>
+</html>

@@ -23,9 +23,9 @@
         <input type="text" @keyup.enter="sum($event)" v-model="num">
         <h1>{{ count }}</h1>
 
-        <!-- <div id="div1" @click="click1">
-            <div id="div2" @click.stop="click2"></div></div>
-        </div> -->
+        <div id="div1" @click="click1">
+            <div id="div2" @click.stop="click2"></div>
+        </div>
 
         <a  href="http://www.baidu.com" @click.prevent="bind($event)">baidu</a>
     </div>
