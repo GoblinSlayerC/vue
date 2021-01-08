@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todolist</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .red {
+            background: #ff0000;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="container text-center">
+        <form class="form-inline" @submit.prevent>
+        <div class="form-group">
+            <label for="product-name">商品名称</label>
+            <input v-model="keyword" type="text" class="form-control">     
+        </div>
+        <button @click="search" type="submit">搜索</button>
+        </form>
+            
+        <form class="form-inline" @submit.prevent>
+            
+            <div class="form-group">
+                <label for="product-name">商品名称</label>
+                <input v-model="productName" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="product-price">商品价格</label>
+                <input v-model="productPrice" type="text" class="form-control">
+            </div>
+            <button @click="add" type="submit">添加</button>
+        </form>
+        <table class="table table-bordered">
+            <thead>
+                <tr class="info">
+                    <td>单选</td>
+                    <td>名称</td>
+                    <td>价格</td>
+                    <td>删除</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr @click="select(item)" v-for="(item, index) in productList" :class="item.isRed?'red':''">
+                    <td><input type="checkbox"></td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.price}}</td>
+                    <td><button @click="del" class="btn btn-sm btn-danger glyphicon glyphicon-remove"></button></td>
+                </tr>
+                <tr>
+                    <td><button class="btn btn-danger btn-sm">删除选中</button></td>
+                    <td colspan="3">总价是: <span>{{total}}</span>元</td>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+<script src="./vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            productList: [{
+                name: '衣服',
+                price: 123,
+                isRed: false
+            }, {
+                name: '裤子',
+                price: 123,
+                isRed: false
+            }, {
+                name: '鞋子',
+                price: 123,
+                isRed: false
+            }
+            ],
+            productName: '',
+            productPrice: undefined,
+            keyword: '',
+        },
+        methods: {
+            select(item) {
+                item.isRed = !item.isRed;
+                this.total + item.price
+            },
+            del() {
+
+            },
+            add() {
+                this.productList.push({
+                    name: this.productName,
+                    price: this.productPrice,
+                    isRed: false
+                })
+                this.productName = '';
+                this.productPrice = undefined;
+            },
+            search(){
+                this.productList = this.productList.filter(function(elem,index){
+                    // console.log(this.keyword);
+                    // console.log(elem.name)
+                    if(elem.name.includes(this.keyword)){
+                        return elem;
+                    }
+                }.bind(this));
+            }
+        },
+        computed: {
+            total() {
+                // let sum = 0;
+                // let arr = this.productList.filter((elem,index)=>{
+                //     if(elem.isRed){
+                //         sum += elem.price
+                //     }
+                // });
+                // return sum
+
+                return this.productList.reduce((sum, elem) => {
+                    if (elem.isRed) {
+                        sum += parseInt(elem.price);
+                    }
+                    return sum
+                }, 0)
+            }
+        }
+    })
+</script>
+
+</html>
