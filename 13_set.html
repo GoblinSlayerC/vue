@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+
+    </div>
+</body>
+<script>
+    let data = {
+        productList: [{
+            name: '衣服',
+            price: 123,
+            isRed: false
+        }, {
+            name: '裤子',
+            price: 123,
+            isRed: false
+        }, {
+            name: '鞋子',
+            price: 123,
+            isRed: false
+        }
+        ],
+        productName: '衣服',
+        productPrice: undefined,
+        keyword: '',
+    }
+    Object.keys(data).forEach((key)=>{
+        // console.log(key);
+        define(data,key,data[key]);
+    });
+
+    function define(data,key,val){
+        Object.defineProperty(data,key,{
+            get(){
+                console.log('get');
+                return val;
+            },
+            set(newVal){
+                console.log('set',`新值是${newVal}`);
+                val = newVal;
+            }
+        });
+    }
+    console.log(data.productName)
+    data.productName='裤子';
+    
+    
+</script>
+
+</html>
