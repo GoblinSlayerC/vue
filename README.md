@@ -9,3 +9,4 @@ git add .
 git commit -m ""
 git push
 git merge dwc
+git init
