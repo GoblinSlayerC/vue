@@ -7,6 +7,6 @@ git status
 git checkout dwc
 git add .
 git commit -m ""
-git push
-git merge origin dwc
+git push origin main
+git merge dwc
 git init
