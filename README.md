@@ -8,5 +8,5 @@ git checkout dwc
 git add .
 git commit -m ""
 git push
-git merge dwc
+git merge origin dwc
 git init
